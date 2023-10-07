@@ -4,7 +4,13 @@
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
-
+# pnpm
+export PNPM_HOME="/home/josh/.local/share/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
@@ -13,14 +19,24 @@ export ZSH="$HOME/.oh-my-zsh"
 
 alias ins="sudo apt install"
 alias e="exa -a"
+alias et="exa -a -T"
 alias prettier='npx prettier'
-alias fzfbat='fzf --preview "batcat --color=always --style=numbers --line-range=:500 {}"'
+alias fb='fzf --preview "bat --color=always --style=numbers --line-range=:500 {}"'
 alias nv="nvim"
 alias zshc="nvim ~/.zshrc"
 alias pyp="pip install"
 alias p="python3"
-
+alias gc="gh repo clone"
+alias i3c="nvim ~/.config/i3/config"
+alias i3r="i3-msg reload ; i3-msg restart"
+alias icat="kitty +kitten icat"
+alias s="kitty +kitten icat"
+alias kitc="nvim ~/.config/kitty/kitty.conf"
+alias i="sudo dnf install"
 export PATH="/home/josh/.local/bin:$PATH"
+export PATH="/home/josh/.config/emacs/bin/:$PATH"
+export PATH="/var/lib/flatpak/app/:$PATH"
+export PATH="~/Documents/shell_scripts/:$PATH"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
